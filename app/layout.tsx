@@ -5,7 +5,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import Link from "next/link";
 import { Button } from "./components/ui/button";
 import { ModeToggle } from "./components/ModeToggle";
-import { AuthButton } from "./components/AuthButton";
+import { LoginForm } from "./components/LoginForm";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -87,10 +87,7 @@ export default function RootLayout({
 
                 {/* Права частина: Кнопки */}
                 <div className="flex items-center gap-4">
-                  <AuthButton></AuthButton>
-                  <Link href="/register">
-                    <Button size="sm">Зареєструватись</Button>
-                  </Link>
+                  <LoginForm></LoginForm>
                   <ModeToggle />
                 </div>
               </div>

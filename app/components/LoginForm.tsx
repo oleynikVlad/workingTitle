@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,12 +8,6 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/app/components/ui/dialog";
-import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-  TabsContent,
-} from "@/app/components/ui/tabs";
 import { Button } from "@/app/components/ui/button";
 import { Input } from "./ui/input";
 import {
@@ -31,15 +23,17 @@ import { useForm } from "react-hook-form";
 import { LoginFormValues, loginSchema } from "../validation/login-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Separator } from "./ui/separator";
-import { AlertComponent } from "./Alert";
-import { Link } from "lucide-react";
 import { Checkbox } from "./ui/checkbox";
+import { useState } from "react";
 
-export function AuthButton() {
-  const [open, setOpen] = useState(false);
+export function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const onSubmit = (data: LoginFormValues) => {
     console.log("Дані форми:", data);
@@ -49,7 +43,7 @@ export function AuthButton() {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
-          Увійти
+          Sign In
         </Button>
       </DialogTrigger>
 
@@ -69,7 +63,7 @@ export function AuthButton() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" {...field} />
+                    <Input placeholder="example@gmail.com" {...field} />
                   </FormControl>
                   <FormDescription></FormDescription>
                   <FormMessage />
@@ -83,7 +77,11 @@ export function AuthButton() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="shadcn" {...field} />
+                    <Input
+                      placeholder="*******"
+                      {...field}
+                      type={showPassword ? "text" : "password"}
+                    />
                   </FormControl>
                   <FormDescription></FormDescription>
                   <FormMessage />
@@ -92,7 +90,7 @@ export function AuthButton() {
             />
             <FormField
               control={form.control}
-              name="mobile"
+              name="forgotPassword"
               render={({ field }) => {
                 return (
                   <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
