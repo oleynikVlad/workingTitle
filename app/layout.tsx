@@ -5,6 +5,7 @@ import { ThemeProvider } from "./components/ThemeProvider";
 import Link from "next/link";
 import { Button } from "./components/ui/button";
 import { ModeToggle } from "./components/ModeToggle";
+import { AuthButton } from "./components/AuthButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,6 +67,18 @@ export default function RootLayout({
                     <Link href="/services" className="hover:underline">
                       Послуги
                     </Link>
+                    <Link href="/projects" className="hover:underline">
+                      Проєкти
+                    </Link>
+                    <Link href="/blog" className="hover:underline">
+                      Блог
+                    </Link>
+                    <Link href="/pricing" className="hover:underline">
+                      Ціни
+                    </Link>
+                    <Link href="/faq" className="hover:underline">
+                      FAQ
+                    </Link>
                     <Link href="/contact" className="hover:underline">
                       Контакти
                     </Link>
@@ -74,11 +87,7 @@ export default function RootLayout({
 
                 {/* Права частина: Кнопки */}
                 <div className="flex items-center gap-4">
-                  <Link href="/login">
-                    <Button variant="outline" size="sm">
-                      Увійти
-                    </Button>
-                  </Link>
+                  <AuthButton></AuthButton>
                   <Link href="/register">
                     <Button size="sm">Зареєструватись</Button>
                   </Link>
@@ -89,7 +98,7 @@ export default function RootLayout({
 
             {/* Основний контент */}
             <main className="flex-1 pt-20">
-              <div className="max-w-7xl mx-auto w-full px-6 md:px-8 lg:px-10">
+              <div className="max-w-7xl mx-auto w-full px-6 md:px-8 lg:px-10 ">
                 {children}
               </div>
             </main>

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { Button } from "./components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,14 +12,11 @@ export default function Home() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis,
           fugit magnam expedita ducimus praesentium cumque non delectus ipsa
           nihil excepturi saepe atque velit, corrupti voluptatibus quo, error
-          maiores sunt perferendis!
+          maiores sunt perferendis
         </p>
-        <a
-          href="#services"
-          className="bg-primary text-white px-6 py-3 rounded-lg font-semibold"
-        >
-          Blog
-        </a>
+        <Link href="/blog">
+          <Button size="lg">Blog</Button>
+        </Link>
       </section>
     </>
   );
