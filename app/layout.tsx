@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
+import Link from "next/link";
+import { Button } from "./components/ui/button";
+import { ModeToggle } from "./components/ModeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,12 +27,80 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <>
+      <html lang="uk" suppressHydrationWarning>
+        <body className="min-h-screen flex flex-col bg-background font-sans antialiased overflow-x-hidden">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {/* Хедер */}
+            <header className="fixed top-0 left-0 w-full z-50 backdrop-blur bg-background/70 border-b border-border shadow-sm">
+              <div className="max-w-7xl mx-auto w-full flex items-center justify-between h-16 px-6 md:px-8 lg:px-10">
+                {/* Ліва частина: Лого + Меню */}
+                <div className="flex items-center gap-8">
+                  <Link
+                    href="/"
+                    className="flex flex-col items-center justify-center w-12 h-12 group"
+                  >
+                    <svg
+                      className="w-10 h-10 stroke-primary transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
+                      viewBox="0 0 100 100"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="50" cy="50" r="40" />
+                    </svg>
+                  </Link>
+
+                  {/* Меню */}
+                  <nav className="hidden md:flex gap-6 text-sm">
+                    <Link href="/about" className="hover:underline">
+                      Про нас
+                    </Link>
+                    <Link href="/services" className="hover:underline">
+                      Послуги
+                    </Link>
+                    <Link href="/contact" className="hover:underline">
+                      Контакти
+                    </Link>
+                  </nav>
+                </div>
+
+                {/* Права частина: Кнопки */}
+                <div className="flex items-center gap-4">
+                  <Link href="/login">
+                    <Button variant="outline" size="sm">
+                      Увійти
+                    </Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button size="sm">Зареєструватись</Button>
+                  </Link>
+                  <ModeToggle />
+                </div>
+              </div>
+            </header>
+
+            {/* Основний контент */}
+            <main className="flex-1 pt-20">
+              <div className="max-w-7xl mx-auto w-full px-6 md:px-8 lg:px-10">
+                {children}
+              </div>
+            </main>
+
+            {/* Футер */}
+            <footer className="w-full border-t border-border py-6 text-center text-sm text-muted-foreground">
+              &copy; {new Date().getFullYear()} Мій сайт. Всі права захищені.
+            </footer>
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
   );
 }
