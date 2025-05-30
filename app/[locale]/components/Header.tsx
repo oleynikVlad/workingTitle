@@ -10,8 +10,12 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import AstroSymbolsWithTooltip from "./AstroSymbolsWithTooltip";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
+  const t = useTranslations("HomePage");
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -20,12 +24,11 @@ export default function Header() {
       <div className="bg-gray-600 text-white text-sm px-4 py-1 flex justify-between items-center">
         <span className="font-bold">www.astro.com</span>
         <div className="flex items-center space-x-4">
-          <FaGlobe />
-          <span>EN</span>
+          <LanguageSwitcher />
           <FaShoppingCart />
-          <span>Shopping Cart</span>
+          <Link href={"/cart"}>{t("cart")}</Link>
           <FaUserCircle />
-          <span>My Astro</span>
+          <Link href={"account"}>{t("account")}</Link>
         </div>
       </div>
 

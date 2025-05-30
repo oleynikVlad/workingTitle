@@ -3,7 +3,9 @@
 import { useState } from "react";
 import CurrentPlanets from "./CurrentPlanets";
 
+
 export default function AstroSymbolsWithTooltip() {
+
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
   return (

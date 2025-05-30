@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/app/components/ui/button";
+import { Button } from "@/app/[locale]/components/ui/button";
 import { Ghost } from "lucide-react"; // Іконка привида (lucide-react)
 
 export default function NotFoundPage() {
