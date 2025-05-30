@@ -1,52 +1,30 @@
-import Link from "next/link";
 import Image from "next/image";
-
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 const cards = [
   {
-    title: "Daily Horoscope",
-    text: (
-      <>
-        Your <span className="font-semibold">individual topics</span> for each
-        day! With the{" "}
-        <span className="text-red-400 font-semibold">Love Horoscope</span> and
-        the <span className="font-semibold">Celestial Events!</span>
-      </>
-    ),
+    titleKey: "dailyTitle",
+    textKey: "dailyTextRich",
     image: "/images/hkhp3_300x300.png",
   },
   {
-    title: "Free Horoscopes",
-    text: (
-      <>
-        Find all the <span className="font-semibold">free horoscopes</span>:
-        Personality, Forecast, Love and Relationship and much more.
-      </>
-    ),
+    titleKey: "freeTitle",
+    textKey: "freeTextRich",
     image: "/images/allfreehp22.png",
   },
   {
-    title: "Charts & Calculations",
-    text: (
-      <>
-        For Astrologers: Chart Drawings, Ephemeris, Data Collections and more.
-      </>
-    ),
+    titleKey: "chartsTitle",
+    textKey: "chartsText",
     image: "/images/charthp4_300x300.png",
   },
   {
-    title: "The Best Time",
-    text: (
-      <>
-        Find the best moment for your project - with the{" "}
-        <span className="text-red-400 font-semibold">
-          electional horoscope!
-        </span>
-      </>
-    ),
+    titleKey: "bestTimeTitle",
+    textKey: "bestTimeTextRich",
     image: "/images/elecbanner_hp.jpg",
   },
 ];
 export default function Slider() {
+  const t = useTranslations("HomePage");
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto mb-12">
       {cards.map((card, index) => (
@@ -56,23 +34,30 @@ export default function Slider() {
         >
           <Link
             key={index}
-            href={`/page/${card.title.toLowerCase()}`}
+            href={`/page/${index}`}
             className="group transition"
           >
             <div className="h-32 w-full bg-gray-600 relative group-hover:scale-105 transition-transform duration-300">
               <Image
                 src={card.image}
-                alt={card.title}
+                alt={card.titleKey}
                 fill
                 className="object-cover"
               />
             </div>
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-2 transition-colors duration-200 group-hover:text-blue-200">
-                {card.title}
+                {t(card.titleKey)}
               </h3>
               <p className="text-sm text-gray-300 transition-colors duration-200 group-hover:text-blue-200">
-                {card.text}
+                {t.rich(card.textKey, {
+                  strong: (chunks) => (
+                    <span className="font-semibold">{chunks}</span>
+                  ),
+                  red: (chunks) => (
+                    <span className="text-red-400 font-semibold">{chunks}</span>
+                  ),
+                })}
               </p>
             </div>
           </Link>

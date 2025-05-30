@@ -22,13 +22,17 @@ export default function Header() {
     <header className="bg-[#0e3a5c] text-white relative overflow-visible z-10">
       {/* Top bar */}
       <div className="bg-gray-600 text-white text-sm px-4 py-1 flex justify-between items-center">
-        <span className="font-bold">www.astro.com</span>
+        <Link href={"/"}>www.neboznaye.com</Link>
         <div className="flex items-center space-x-4">
           <LanguageSwitcher />
-          <FaShoppingCart />
-          <Link href={"/cart"}>{t("cart")}</Link>
-          <FaUserCircle />
-          <Link href={"account"}>{t("account")}</Link>
+          <div className="flex items-center gap-1">
+            <FaShoppingCart />
+            <Link href="/cart"> {t("cart")} </Link>
+          </div>
+          <div className="flex items-center gap-1">
+            <FaUserCircle />
+            <Link href="/account"> {t("account")} </Link>
+          </div>
         </div>
       </div>
 
