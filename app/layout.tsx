@@ -20,31 +20,13 @@ export default function RootLayout({
         {/* Top Header */}
         <Header />
 
-        {/* Main Layout with Sidebar */}
-        <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-12 gap-8">
+        {/* Full-width wrapper */}
+        <div className="w-full bg-gray-900 px-4 py-8">
+          {/* Centered content using max-w */}
           {/* Main Content */}
-          <main className="md:col-span-8">{children}</main>
-
-          {/* Right Sidebar */}
-          <aside className="md:col-span-4 space-y-6">
-            <div className="bg-gray-800 p-4 rounded">
-              <h3 className="text-lg font-semibold mb-2">Current Planets</h3>
-              <ul className="text-sm text-gray-300 space-y-1">
-                <li>☉ Sun: Taurus</li>
-                <li>☽ Moon: Pisces</li>
-                <li>☿ Mercury: Aries</li>
-                <li>♀ Venus: Gemini</li>
-                <li>♂ Mars: Aries</li>
-              </ul>
-            </div>
-            <div className="bg-gray-800 p-4 rounded">
-              <h3 className="text-lg font-semibold mb-2">Astro Wiki</h3>
-              <p className="text-sm text-gray-300">
-                Explore 9000 years of ephemeris, terms, and concepts in
-                astrology.
-              </p>
-            </div>
-          </aside>
+          <main className="md:col-span-8 w-full">{children}</main>
+          {/* Optional sidebar */}
+          {/* <aside className="md:col-span-4">...</aside> */}
         </div>
 
         {/* Footer */}
